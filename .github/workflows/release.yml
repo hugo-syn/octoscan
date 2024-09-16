@@ -40,7 +40,6 @@ jobs:
         run: |
           go mod tidy
           go build
-          ls -asl
       - name: "Upload binary"
         uses: actions/upload-artifact@v4
         with:
@@ -102,11 +101,9 @@ jobs:
         with:
           name: octoscan
           path: ./octoscan
-      - name: debug
-        run: ls -asl
       - name: "Publish to GitHub"
         uses: softprops/action-gh-release@v2
         with:
           draft: true
-          files: ./octoscan
+          files: octoscan
           tag_name: v${{ inputs.tag }}
